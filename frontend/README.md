@@ -17,6 +17,14 @@ Front-end: `cd frontend`, `npm install`, `npm run dev` (http://localhost:5173).
 ## Funcionalidades
 Login e cadastro, CRUD de clientes, cadastro de automóveis, criação e consulta de pedidos, avaliação de pedidos por agentes.
 
+## Prints
+
+![Diagrama de classes](docs/classes.png)
+![Diagrama de casos de uso](docs/casosdeuso.png)
+![Diagrama de pacotes](docs/pacotes.png)
+![Print do cadastro](docs/cadastro.png)
+![Print da tela principal](docs/telap.png)
+
 ## Limitações
 Qualquer usuário pode se cadastrar como agente; o usuário não está vinculado à entidade Cliente; contrato de crédito ainda não foi implementado.
 
