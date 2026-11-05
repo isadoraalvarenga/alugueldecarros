@@ -1,0 +1,22 @@
+@startuml
+package "frontend (React + Vite)" as FE
+package "backend (Spring Boot)" {
+  package controller
+  package service
+  package repository
+  package model
+  package dto
+  package security
+}
+database "Supabase (PostgreSQL)" as DB
+
+FE --> controller : HTTP/JSON + JWT
+controller --> service
+controller --> dto
+service --> repository
+service --> model
+service --> security
+repository --> model
+repository --> DB
+security ..> model
+@enduml

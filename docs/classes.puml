@@ -1,0 +1,58 @@
+@startuml
+enum Perfil {
+  CLIENTE
+  AGENTE
+}
+enum StatusPedido {
+  EM_ANALISE
+  APROVADO
+  REJEITADO
+  CANCELADO
+}
+enum TipoProprietario {
+  CLIENTE
+  EMPRESA
+  BANCO
+}
+
+class Usuario {
+  id
+  login
+  senha
+  perfil
+}
+class Cliente {
+  id
+  rg
+  cpf
+  nome
+  endereco
+  profissao
+}
+class Rendimento {
+  id
+  entidadeEmpregadora
+  valor
+}
+class Automovel {
+  id
+  matricula
+  ano
+  marca
+  modelo
+  placa
+  tipoProprietario
+}
+class PedidoAluguel {
+  id
+  status
+  criadoEm
+}
+
+Usuario --> Perfil
+Automovel --> TipoProprietario
+PedidoAluguel --> StatusPedido
+Cliente "1" *-- "0..3" Rendimento
+PedidoAluguel "*" --> "1" Cliente
+PedidoAluguel "*" --> "1" Automovel
+@enduml
