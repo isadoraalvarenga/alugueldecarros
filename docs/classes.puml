@@ -55,4 +55,12 @@ PedidoAluguel --> StatusPedido
 Cliente "1" *-- "0..3" Rendimento
 PedidoAluguel "*" --> "1" Cliente
 PedidoAluguel "*" --> "1" Automovel
+
+class ContratoCredito {
+  id
+  valor
+  banco
+}
+PedidoAluguel "1" --> "0..1" ContratoCredito
+
 @enduml
