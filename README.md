@@ -21,12 +21,25 @@ Login e cadastro, CRUD de clientes, cadastro de automóveis, criação e consult
 
 ## Diagramas e protótipo
 
+### Diagrama de classes (versão 1)
 ![Diagrama de classes versao 1](docs/classes.png)
+
+### Diagrama de classes (versão 2)
 ![Diagrama de classes versao 2](docs/classesatualizadas.png)
+
+### Diagrama de classes (versão final)
 ![Diagrama de classes versao final](docs/classesdiagramafinal.png)
+
+### Diagrama de casos de uso
 ![Diagrama de casos de uso](docs/casosdeuso.png)
+
+### Diagrama de pacotes
 ![Diagrama de pacotes](docs/pacotes.png)
+
+### Tela do cliente
 ![Print da tela do cliente](docs/telacliente.png)
+
+### Tela de login
 ![Print da tela de login](docs/telalogin.png)
 
 ## Limitações
