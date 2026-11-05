@@ -217,12 +217,15 @@ function Pedidos({ token, perfil }) {
         {autos.map((a) => <option key={a.id} value={a.id}>{a.marca} {a.modelo}</option>)}
       </select>
       <button
-        onClick={() => acao(() => req("/pedidos", token, "POST", {
+      onClick={() => {
+        if (!clienteId || !automovelId) {
+          setErro("Selecione o cliente e o automóvel");
+          return;
+        }
+        acao(() => req("/pedidos", token, "POST", {
           clienteId: Number(clienteId), automovelId: Number(automovelId),
-        }))}
-      >
-        Criar pedido
-      </button>
+        }));
+      }}>Criar pedido</button>
       <p style={{ color: "red" }}>{erro}</p>
       <ul>
         {pedidos.map((p) => (
