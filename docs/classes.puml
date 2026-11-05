@@ -1,4 +1,4 @@
-@startuml
+@startuml classes
 enum Perfil {
   CLIENTE
   AGENTE
@@ -14,7 +14,6 @@ enum TipoProprietario {
   EMPRESA
   BANCO
 }
-
 class Usuario {
   id
   login
@@ -48,19 +47,16 @@ class PedidoAluguel {
   status
   criadoEm
 }
-
+class ContratoCredito {
+  id
+  valor
+  banco
+}
 Usuario --> Perfil
 Automovel --> TipoProprietario
 PedidoAluguel --> StatusPedido
 Cliente "1" *-- "0..3" Rendimento
 PedidoAluguel "*" --> "1" Cliente
 PedidoAluguel "*" --> "1" Automovel
-
-class ContratoCredito {
-  id
-  valor
-  banco
-}
 PedidoAluguel "1" --> "0..1" ContratoCredito
-
 @enduml
