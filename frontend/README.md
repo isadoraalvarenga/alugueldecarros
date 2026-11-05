@@ -1,3 +1,26 @@
+# Sistema de Aluguel de Carros
+
+Projeto da disciplina DIAW - PUC Minas (Laboratório 02).
+
+## Tecnologias
+Java 25, Spring Boot 4.0.x, Maven, React + Vite, Supabase (PostgreSQL), JWT.
+
+## Arquitetura
+MVC no back-end (controller, service, repository, model), front-end em React consumindo a API REST. Diagramas em `docs/`.
+
+## Como rodar
+Back-end (na raiz): defina `application-local.properties` com a URL, usuário e senha do Supabase e `jwt.secret`, e rode:
+`.\mvnw spring-boot:run "-Dspring-boot.run.profiles=local"`
+
+Front-end: `cd frontend`, `npm install`, `npm run dev` (http://localhost:5173).
+
+## Funcionalidades
+Login e cadastro, CRUD de clientes, cadastro de automóveis, criação e consulta de pedidos, avaliação de pedidos por agentes.
+
+## Limitações
+Qualquer usuário pode se cadastrar como agente; o usuário não está vinculado à entidade Cliente; contrato de crédito ainda não foi implementado.
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
