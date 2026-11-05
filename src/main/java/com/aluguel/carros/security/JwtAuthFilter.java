@@ -1,7 +1,6 @@
 package com.aluguel.carros.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +30,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     claims.getSubject(), null,
                     List.of(new SimpleGrantedAuthority("ROLE_" + claims.get("perfil", String.class))));
                 SecurityContextHolder.getContext().setAuthentication(autenticacao);
-            } catch (JwtException | IllegalArgumentException e) {
+            } catch (Exception e) {
+                System.out.println("JWT rejeitado: " + e);
                 SecurityContextHolder.clearContext();
             }
         }
