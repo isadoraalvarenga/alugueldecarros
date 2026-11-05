@@ -61,6 +61,7 @@ function Clientes({ token }) {
   const vazio = { rg: "", cpf: "", nome: "", endereco: "", profissao: "", empregador: "", valor: "" };
   const [lista, setLista] = useState([]);
   const [f, setF] = useState(vazio);
+  const [editId, setEditId] = useState(null);
   const [erro, setErro] = useState("");
 
   const carregar = () => req("/clientes", token).then(setLista).catch((e) => setErro(e.message));
@@ -71,15 +72,34 @@ function Clientes({ token }) {
       const rendimentos = f.empregador
         ? [{ entidadeEmpregadora: f.empregador, valor: Number(f.valor) }]
         : [];
-      await req("/clientes", token, "POST", {
+      const dados = {
         rg: f.rg, cpf: f.cpf, nome: f.nome, endereco: f.endereco, profissao: f.profissao, rendimentos,
-      });
-      setF(vazio);
-      setErro("");
+      };
+      if (editId) {
+        await req("/clientes/" + editId, token, "PUT", dados);
+      } else {
+        await req("/clientes", token, "POST", dados);
+      }
+      cancelarEdicao();
       carregar();
     } catch (e) {
       setErro(e.message);
     }
+  }
+
+  function editar(c) {
+    const r = c.rendimentos[0];
+    setF({
+      rg: c.rg, cpf: c.cpf, nome: c.nome, endereco: c.endereco || "", profissao: c.profissao || "",
+      empregador: r ? r.entidadeEmpregadora : "", valor: r ? String(r.valor) : "",
+    });
+    setEditId(c.id);
+  }
+
+  function cancelarEdicao() {
+    setF(vazio);
+    setEditId(null);
+    setErro("");
   }
 
   async function excluir(id) {
@@ -97,16 +117,18 @@ function Clientes({ token }) {
 
   return (
     <div>
-      <h3>Clientes</h3>
+      <h3>{editId ? "Editando cliente #" + editId : "Clientes"}</h3>
       {campo("nome", "Nome")}{campo("rg", "RG")}{campo("cpf", "CPF")}
       {campo("endereco", "Endereço")}{campo("profissao", "Profissão")}
       {campo("empregador", "Empregador")}{campo("valor", "Rendimento")}
-      <button onClick={salvar}>Salvar</button>
+      <button onClick={salvar}>{editId ? "Atualizar" : "Salvar"}</button>
+      {editId && <button onClick={cancelarEdicao}>Cancelar edição</button>}
       <p style={{ color: "red" }}>{erro}</p>
       <ul>
         {lista.map((c) => (
           <li key={c.id}>
             {c.nome} - {c.cpf} - {c.profissao}{" "}
+            <button onClick={() => editar(c)}>Editar</button>
             <button onClick={() => excluir(c.id)}>Excluir</button>
           </li>
         ))}
