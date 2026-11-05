@@ -15,18 +15,25 @@ Back-end (na raiz): defina `application-local.properties` com a URL, usuário e 
 Front-end: `cd frontend`, `npm install`, `npm run dev` (http://localhost:5173).
 
 ## Funcionalidades
-Login e cadastro, CRUD de clientes, cadastro de automóveis, criação e consulta de pedidos, avaliação de pedidos por agentes.
+Login e cadastro, CRUD de clientes, cadastro de automóveis, criação e consulta de pedidos, avaliação de pedidos por agentes, contrato de crédito: agente registra valor e banco de um pedido.
 
 ## Prints
 
-![Diagrama de classes](docs/classes.png)
+![Diagrama de classes versao 1](docs/classes.png)
+![Diagrama de classes versao 2](docs/classesatualizadas.png)
+![Diagrama de classes versao final](docs/classesdiagramafinal.png)
 ![Diagrama de casos de uso](docs/casosdeuso.png)
 ![Diagrama de pacotes](docs/pacotes.png)
-![Print do cadastro](docs/cadastro.png)
-![Print da tela principal](docs/telap.png)
+![Print da tela do cliente](docs/telacliente.png)
+![Print da tela de login](docs/telalogin.png)
 
 ## Limitações
-Qualquer usuário pode se cadastrar como agente; o usuário não está vinculado à entidade Cliente; contrato de crédito ainda não foi implementado.
+
+- O contrato de crédito existe só na API (sem tela no front-end).
+- Agentes (empresas e bancos) são representados apenas pelo perfil de login, sem entidade própria.
+- O cadastro permite escolher o perfil AGENTE livremente; em produção isso seria restrito.
+- O usuário ainda não está vinculado à entidade Cliente.
+- O front-end edita um rendimento por cliente, embora o back-end aceite até 3.
 
 
 # React + Vite
